@@ -11,39 +11,4 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-		<context:component-scan base-package="com.peru.dao" />
-		
-		<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
-			<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" /> 
-			<property name="url" value="jdbc:mysql://localhost:9001/peru" /> 
-			<property name="username" value="root" />
-			<property name="password" value="root" />
-			<property name="maxTotal" value="10" /> 
-		</bean>		
-	
-		<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-			<property name="dataSource" ref="dataSource" />
-			<property name="packagesToScan" value="com.peru.model" /> <!--  Scan des @Entity -->
-			<!-- On précise le provider ... -->
-			<property name="jpaVendorAdapter">
-				<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
- 			</property>
-		<!-- On précise les propriétés ... -->
-			 <property name="jpaProperties">
-				<props>
-					<prop key="hibernate.hbm2ddl.auto">create</prop>
-					<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-					<prop key="hibernate.dialect.storage_engine">innodb</prop>
-					<prop key="hibernate.show_sql">true</prop>
-					<prop key="hibernate.format_sql">false</prop>
-				</props>
-			</property>
-		</bean>
-		
-		<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-			<property name="entityManagerFactory" ref="entityManagerFactory" />
-		</bean>
-		
-		<tx:annotation-driven transaction-manager="transactionManager" />
-		
 </beans>
