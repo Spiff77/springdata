@@ -6,7 +6,6 @@ import com.peru.config.AppConfig;
 
 
 public class Principal {
-
 	
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
